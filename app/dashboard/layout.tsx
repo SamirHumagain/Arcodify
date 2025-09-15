@@ -11,6 +11,7 @@ export default function AdminLayout({
   const router = useRouter();
   const initFromSession = useAuth((s: any) => s.initFromSession);
   const token = useAuth((s: any) => s.token);
+  const userEmail = useAuth((s: any) => s.userEmail);
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function AdminLayout({
       }`}
     >
       <header className="mb-4 flex justify-between items-center">
-        <span>Admin header — hmgsamir08@gmail.com</span>
+        <span>Admin header — {userEmail || "No email found"}</span>
         <button
           className="btn"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
