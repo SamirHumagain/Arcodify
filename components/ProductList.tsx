@@ -15,7 +15,6 @@ export default function ProductList() {
     if (!products.length) fetchAll();
   }, [fetchAll, products.length]);
 
-  // Debounced search setter
   const setSearchDebounced = useCallback(
     debounce((val: string) => {
       setSearch(val);

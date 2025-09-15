@@ -1,1 +1,0 @@
-// Paginated table component

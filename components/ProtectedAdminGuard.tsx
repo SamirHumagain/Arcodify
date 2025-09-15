@@ -1,1 +1,0 @@
-// Protected admin guard component
