@@ -7,10 +7,7 @@ type Props = {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Link
-      href={`/product/${product.id}`}
-      className="border rounded-lg p-4 flex flex-col gap-2 hover:shadow-lg transition cursor-pointer"
-    >
+    <div className="border rounded-lg p-4 flex flex-col gap-2 hover:shadow-lg transition">
       <img
         src={product.image}
         alt={product.title}
@@ -24,6 +21,12 @@ export default function ProductCard({ product }: Props) {
           Rating: {product.rating.rate} ({product.rating.count})
         </div>
       )}
-    </Link>
+      <Link
+        href={`/product/${product.id}`}
+        className="mt-2 px-4 py-1 rounded bg-blue-500 text-white text-center font-medium hover:bg-blue-600 transition"
+      >
+        View Details
+      </Link>
+    </div>
   );
 }

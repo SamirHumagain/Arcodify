@@ -1,18 +1,19 @@
 "use client";
+
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useProducts } from "@/stores/useProducts";
-import { useCart } from "@/stores/useCart";
+import CheckoutModal from "@/components/CheckoutModal";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const productId = Number(params?.id);
-  const { fetchById, products } = useProducts();
-  const addToCart = useCart((s: any) => s.add);
+  const { fetchById } = useProducts();
   const [product, setProduct] = useState<import("@/lib/types").Product | null>(
     null
   );
   const [loading, setLoading] = useState(true);
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   useEffect(() => {
     if (!productId) return;
@@ -24,6 +25,24 @@ export default function ProductDetailPage() {
 
   if (loading) return <div>Loading...</div>;
   if (!product) return <div>Product not found.</div>;
+
+  // Store product in localStorage as cart
+  const handleAddToCart = () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const exists = cart.find((item: any) => item.product.id === product.id);
+    let newCart;
+    if (exists) {
+      newCart = cart.map((item: any) =>
+        item.product.id === product.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    } else {
+      newCart = [{ product, quantity: 1 }, ...cart];
+    }
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    setCheckoutOpen(true);
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-8">
@@ -65,12 +84,16 @@ export default function ProductDetailPage() {
           )}
           <button
             className="bg-gradient-to-r from-blue-500 to-green-500 text-white font-bold py-2 px-6 rounded-lg shadow hover:scale-105 transition mt-2 w-fit"
-            onClick={() => addToCart(product, 1)}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </button>
         </div>
       </div>
+      <CheckoutModal
+        open={checkoutOpen}
+        onClose={() => setCheckoutOpen(false)}
+      />
     </div>
   );
 }
