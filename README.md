@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Arcodify Frontend Assessment
 
-## Getting Started
+Hi, I'm Samir Humagain, and this is my submission for the Arcodify Frontend Assessment.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is a Next.js e-commerce storefront and admin dashboard built for the Arcodify assessment. It demonstrates:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Zustand (state management)
+- axios (data fetching)
+- react-hook-form + zod (forms & validation)
+- shadcn/ui (modal/dialog)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Public Side**: Storefront grid, product list, product details, cart, checkout modal
+- **Admin Side**: Login/signup (mock), dashboard products (search, filter, pagination, add/remove), dashboard users (search)
+- **State**: Zustand stores for products, cart, and auth
+- **API**: axios instance with interceptors; mock endpoints for admin actions
+- **Forms**: react-hook-form + zod for login/signup
+- **UI**: Tailwind for layout, shadcn/ui for modal dialogs
 
-## Learn More
+## Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run the development server:
+   ```bash
+   npm run dev
+   ```
+3. Open [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Product list with search, filter, pagination
+- Product details with add to cart
+- Cart and checkout modal
+- Admin dashboard with product/user management
+- Mocked add/remove product endpoints
+- Auth guard for admin routes
 
-## Deploy on Vercel
+## Bonus (Optional)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Theme toggle
+- Skeleton loaders
+- Optimistic updates
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Folder Structure
+
+- `/app` — Next.js routes (public, auth, dashboard)
+- `/components` — UI components
+- `/stores` — Zustand stores
+- `/lib` — API, types, helpers
+- `/pages/api/mock` — Mock endpoints
+- `/styles` — Tailwind CSS
+
+## Author & Assessment
+
+I built this project for the Arcodify Frontend Assessment. See the assessment brief for grading criteria and acceptance tests.
+
+Feel free to reach out if you have any questions about my implementation or want to discuss frontend development!
